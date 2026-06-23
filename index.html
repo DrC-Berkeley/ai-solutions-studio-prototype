@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Solutions Studio — Builder Stories</title>
+<meta name="description" content="The AI Solutions Studio, read as stories: the educators behind the apps, the root version each built, and how it travels across California's community colleges." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Spline+Sans+Mono:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0c0f14; --cream:#fbf9f6; --surface1:#eff0e5; --white:#ffffff;
+    --hl:#feffa0; --blue:#a4beeb; --gray:#535350;
+    --sans:"Instrument Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:"Spline Sans Mono",ui-monospace,Menlo,monospace;
+    --serif:"EB Garamond",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);
+    font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .reading{max-width:680px;margin-left:auto;margin-right:auto}
+  .kicker{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--gray);margin:0 0 16px}
+  .label{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--gray);margin:0 0 12px}
+  a{color:inherit}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--ink)}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .wordmark{font-weight:700;font-size:20px;letter-spacing:-.01em}
+  .tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--ink);border-radius:999px;padding:4px 11px}
+
+  /* cover */
+  .cover{padding:84px 0 64px;border-bottom:1px solid var(--ink)}
+  .cover h1{font-size:clamp(36px,6.4vw,76px);line-height:1.0;letter-spacing:-.03em;font-weight:700;margin:0 0 28px;max-width:16ch}
+  .cover .standfirst{font-family:var(--serif);font-size:clamp(21px,2.5vw,28px);line-height:1.45;max-width:34ch;margin:0 0 34px;color:var(--ink)}
+  .cover .standfirst.measure{max-width:60ch}
+  .spine-legend{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink);display:inline-block;border-top:1px solid var(--ink);padding-top:14px}
+  .spine-legend .arr{color:var(--gray);padding:0 6px}
+
+  /* contents nav (sticky, scroll-spy) */
+  .contents{position:sticky;top:0;z-index:30;background:var(--surface1);border-bottom:1px solid var(--ink)}
+  .contents .wrap{display:flex;gap:4px;overflow-x:auto;height:52px;align-items:stretch}
+  .contents a{display:flex;align-items:center;gap:8px;padding:0 14px;text-decoration:none;white-space:nowrap;
+    font-size:14px;font-weight:500;color:var(--gray);border-bottom:2px solid transparent}
+  .contents a .n{font-family:var(--mono);font-size:11px}
+  .contents a:hover{color:var(--ink)}
+  .contents a[aria-current="true"]{color:var(--ink);font-weight:600;border-bottom-color:var(--ink)}
+
+  /* chapter */
+  .chapter{padding:84px 0 76px;border-bottom:1px solid var(--ink);scroll-margin-top:54px}
+  .chapter-top{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;margin:0 0 14px}
+  .chapter-top.flip{grid-template-columns:340px 1fr}
+  .chapter-top.flip .lead{order:2}
+  .chapter-top.flip .portrait{order:1}
+  .lead h2{font-size:clamp(32px,5vw,52px);line-height:1.02;letter-spacing:-.02em;font-weight:700;margin:0 0 8px}
+  .lead .role{font-family:var(--mono);font-size:13px;color:var(--gray);margin:0 0 20px;line-height:1.4}
+  .lead .deck{font-family:var(--serif);font-size:clamp(20px,2.3vw,26px);line-height:1.4;margin:0;color:var(--ink)}
+  .portrait{margin:0}
+  .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border:1px solid var(--ink);border-radius:4px;display:block;background:var(--surface1)}
+  .portrait figcaption{font-family:var(--mono);font-size:11.5px;color:var(--gray);margin-top:9px}
+
+  blockquote.pull{font-family:var(--serif);font-size:clamp(24px,3vw,34px);line-height:1.3;font-weight:400;margin:30px 0;padding:0 0 0 24px;border-left:3px solid var(--ink)}
+  blockquote.pull cite{display:block;font-family:var(--mono);font-style:normal;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-top:16px}
+  .body p{margin:0 0 20px}
+  .body p .em{font-weight:600}
+
+  /* app block */
+  .app-block{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:24px 0;margin:34px 0}
+  .app-block h3{font-size:23px;font-weight:700;letter-spacing:-.01em;margin:0 0 6px}
+  .app-block p{margin:0 0 16px;font-size:16px}
+  .btn{display:inline-block;background:var(--ink);color:var(--white);text-decoration:none;font-weight:600;font-size:14px;padding:10px 16px;border-radius:4px;border:1px solid var(--ink)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .app-block .meta{font-family:var(--mono);font-size:11px;color:var(--gray);margin:12px 0 0;word-break:break-all}
+  .app-block .companion{font-size:13.5px;color:var(--gray);margin-top:14px}
+  .app-block .companion a{font-weight:600}
+
+  /* apply across contexts */
+  .applyit{margin:34px 0}
+  .applyit .lead-txt{font-size:16px;margin:0 0 16px}
+  .applyit .lead-txt b{font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+  .chip{appearance:none;font-family:var(--sans);font-size:13.5px;font-weight:600;cursor:pointer;background:var(--white);border:1px solid var(--ink);border-radius:999px;padding:7px 14px;color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--hl)}
+  .applyit-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);border-radius:4px;overflow:hidden}
+  .stays,.swaps{padding:18px 20px}
+  .stays{background:var(--surface1);border-right:1px solid var(--ink)}
+  .col-label{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin:0 0 14px}
+  .stays ul{list-style:none;margin:0;padding:0}
+  .stays li{position:relative;padding:0 0 11px 20px;font-size:14px}
+  .stays li::before{content:"=";position:absolute;left:0;top:0;font-family:var(--mono);font-weight:600}
+  .swap-line{padding:0 0 13px}
+  .swap-line .what{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray)}
+  .swap-line .to{font-size:14.5px;font-weight:600;margin-top:2px}
+  .swap-panel{display:none}
+  .swap-panel.is-active{display:block}
+
+  /* lineage */
+  .lineage{margin:30px 0 0}
+  .nodes{display:flex;flex-wrap:wrap;align-items:stretch}
+  .lnode{border:1px solid var(--ink);background:var(--white);border-radius:4px;padding:13px 15px;min-width:150px;flex:1}
+  .lnode.root{background:var(--surface1)}
+  .lnode .stage{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gray)}
+  .lnode .who{font-weight:700;font-size:15px;margin:6px 0 2px}
+  .lnode .what{font-size:12.5px;color:var(--gray)}
+  .lconn{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;color:var(--gray);padding:0 11px}
+  .lineage .cap{font-size:13.5px;color:var(--gray);margin:14px 0 0}
+
+  /* closing */
+  .closing{padding:88px 0 96px}
+  .closing h2{font-size:clamp(30px,4.6vw,50px);line-height:1.04;letter-spacing:-.02em;font-weight:700;margin:0 0 26px;max-width:18ch}
+  .closing p{margin:0 0 22px}
+  blockquote.pull.big{font-size:clamp(24px,3.4vw,38px);border-left:0;padding:26px 0;margin:14px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+
+  footer{border-top:1px solid var(--ink);padding:30px 0 64px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer .note{font-family:var(--mono);font-size:12px;color:var(--gray);max-width:66ch;line-height:1.55}
+  footer .wordmark{font-size:18px}
+
+  @media (max-width:820px){
+    .chapter-top,.chapter-top.flip{grid-template-columns:1fr;gap:24px}
+    .chapter-top .lead,.chapter-top.flip .lead{order:1}
+    .chapter-top .portrait,.chapter-top.flip .portrait{order:2;max-width:340px}
+    .applyit-grid{grid-template-columns:1fr}
+    .stays{border-right:0;border-bottom:1px solid var(--ink)}
+    .nodes{flex-direction:column}
+    .lconn{padding:8px 0;transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead"><div class="wrap">
+  <span class="wordmark">Playlab</span>
+  <span class="tag">AI Solutions Studio · Concept Prototype</span>
+</div></div>
+
+<header class="cover"><div class="wrap">
+  <p class="kicker">California Community Colleges × Playlab · Spring 2026</p>
+  <h1>Every app starts with a person and a problem.</h1>
+  <p class="standfirst measure">The library isn't a catalog of 1,900 apps. It's a record of educators who saw something break and built a fix — and of how those fixes travel, college to college, until they change the system. Here are five of those stories, start to finish.</p>
+  <span class="spine-legend">Person<span class="arr">→</span>Story<span class="arr">→</span>App<span class="arr">→</span>Lineage<span class="arr">→</span>Collection</span>
+</div></header>
+
+<nav class="contents" aria-label="The stories"><div class="wrap">
+  <a href="#ryan"><span class="n">01</span> Ryan Hitch</a>
+  <a href="#mylinh"><span class="n">02</span> My-Linh Nguyen</a>
+  <a href="#khrystyn"><span class="n">03</span> Khrystyn Pamintuan</a>
+  <a href="#sally"><span class="n">04</span> Sally Baldwin</a>
+  <a href="#jacob"><span class="n">05</span> Jacob Jun</a>
+</div></nav>
+
+<main>
+
+  <!-- ===== 01 RYAN ===== -->
+  <article class="chapter" id="ryan"><div class="wrap">
+    <p class="kicker">Story 01 · Chaffey College · Inland Empire / Desert</p>
+    <div class="chapter-top">
+      <div class="lead">
+        <h2>Ryan Hitch</h2>
+        <p class="role">Instructional Specialist, Distance Education</p>
+        <p class="deck">He had to move an entire faculty toward Universal Design for Learning — one 60-minute workshop at a time.</p>
+      </div>
+      <figure class="portrait"><img src="assets/ryan-hitch.jpg" alt="Ryan Hitch" onerror="this.style.visibility='hidden'"><figcaption>Ryan Hitch · Chaffey College</figcaption></figure>
+    </div>
+    <div class="reading">
+      <div class="body">
+        <blockquote class="pull">"The more problems a tool solves at once, the more indispensable it becomes."<cite>Ryan's design principle — "utility stacking"</cite></blockquote>
+        <p>So Ryan built the <span class="em">UDL Assessment Bot</span> to carry the load between sessions. Faculty upload a course outline — low-stakes — and it returns UDL-aligned assessment ideas, then quietly maps each one to Chaffey's ACES skills framework. Hesitant faculty see it work before they're ever asked to share more.</p>
+        <p>That sequencing is the design. The bot solves two problems at once — better assessments and ACES alignment — and that's what makes faculty come back.</p>
+      </div>
+      <div class="app-block">
+        <p class="label">The app — the root</p>
+        <h3>UDL Assessment Bot</h3>
+        <p>Generates UDL-aligned assessments from a course outline, mapped to a transferable-skills framework, with a trust-ramp that proves value before asking for more.</p>
+        <a class="btn" href="https://www.playlab.ai/project/cmi2owhv3595vil0uvb4ij6rq" target="_blank" rel="noopener">Open in Playlab →</a>
+        <p class="meta">playlab.ai/project/cmi2owhv3595vil0uvb4ij6rq</p>
+      </div>
+      <div class="applyit">
+        <p class="label">Try it — adapt the root</p>
+        <p class="lead-txt">The structure stays; three campus-specific pieces get swapped. <b>Pick a context.</b></p>
+        <div class="chips" role="group" aria-label="Choose a context">
+          <button class="chip" aria-pressed="true" data-ctx="r1">Chaffey · origin</button>
+          <button class="chip" aria-pressed="false" data-ctx="r2">A STEM division</button>
+          <button class="chip" aria-pressed="false" data-ctx="r3">A humanities dept</button>
+          <button class="chip" aria-pressed="false" data-ctx="r4">Your college →</button>
+        </div>
+        <div class="applyit-grid">
+          <div class="stays"><p class="col-label">What stays — the root</p><ul><li>Progressive, low-stakes input</li><li>UDL-aligned suggestions</li><li>Skills / ILO mapping logic</li><li>The trust-ramp sequencing</li></ul></div>
+          <div class="swaps"><p class="col-label">Swap for this context</p>
+            <div class="swap-panel is-active" data-ctx="r1"><div class="swap-line"><div class="what">Skills framework</div><div class="to">Chaffey ACES — 12 transferable skills</div></div><div class="swap-line"><div class="what">Tool recs</div><div class="to">Chaffey's LTI tools</div></div><div class="swap-line"><div class="what">Student resources</div><div class="to">Chaffey support &amp; tutoring</div></div></div>
+            <div class="swap-panel" data-ctx="r2"><div class="swap-line"><div class="what">Skills framework</div><div class="to">Program SLOs &amp; lab outcomes</div></div><div class="swap-line"><div class="what">Tool recs</div><div class="to">Simulation &amp; lab LTI tools</div></div><div class="swap-line"><div class="what">Student resources</div><div class="to">STEM tutoring &amp; lab safety</div></div></div>
+            <div class="swap-panel" data-ctx="r3"><div class="swap-line"><div class="what">Skills framework</div><div class="to">GE critical-thinking &amp; writing</div></div><div class="swap-line"><div class="what">Tool recs</div><div class="to">Writing-center &amp; library tools</div></div><div class="swap-line"><div class="what">Student resources</div><div class="to">Writing center &amp; research help</div></div></div>
+            <div class="swap-panel" data-ctx="r4"><div class="swap-line"><div class="what">Skills framework</div><div class="to">Your skills / ILO framework</div></div><div class="swap-line"><div class="what">Tool recs</div><div class="to">Your LMS-integrated tools</div></div><div class="swap-line"><div class="what">Student resources</div><div class="to">Your campus support links</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lineage">
+        <p class="label">Lineage → collection</p>
+        <div class="nodes">
+          <div class="lnode root"><div class="stage">Root</div><div class="who">Ryan · Chaffey</div><div class="what">UDL Assessment Bot</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Remix</div><div class="who">Any college</div><div class="what">Swap the 3 pieces</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Collection</div><div class="who">Regional UDL toolkit</div><div class="what">Shared across a region</div></div>
+        </div>
+        <p class="cap">Already traveling: a colleague who saw it solve ACES live now runs her own workshops — and joins the CCC Chancellor's Innovators Program in 2026.</p>
+      </div>
+    </div>
+  </div></article>
+
+  <!-- ===== 02 MY-LINH ===== -->
+  <article class="chapter" id="mylinh"><div class="wrap">
+    <p class="kicker">Story 02 · Cuyamaca College · San Diego &amp; Imperial</p>
+    <div class="chapter-top flip">
+      <div class="lead">
+        <h2>My-Linh Nguyen</h2>
+        <p class="role">Professor, Counselor &amp; Counseling Dept Chair, Ph.D.</p>
+        <p class="deck">Five counselors. Nine thousand students. A ratio of 1,317 to 1 — and she read it as a reason to build.</p>
+      </div>
+      <figure class="portrait"><img src="assets/my-linh-nguyen.jpg" alt="My-Linh Nguyen" onerror="this.style.visibility='hidden'"><figcaption>My-Linh Nguyen · Cuyamaca College</figcaption></figure>
+    </div>
+    <div class="reading">
+      <div class="body">
+        <blockquote class="pull">"We seriously had nothing before this."<cite>My-Linh, on the gap her probation bot now fills</cite></blockquote>
+        <p>A self-described AI skeptic, My-Linh changed her mind when she realized a "chatbot" could be the interactive FAQ she'd always wanted. She <span class="em">remixed</span> a Santa Monica colleague's major-and-career generator, retuned the questions with Cuyamaca's career counselor, and mapped it to Cuyamaca's own catalog of majors and certificates.</p>
+        <p>Her companion probation bot answers students in their own languages, at any hour — replacing what used to be a dead-end webpage of policy jargon.</p>
+      </div>
+      <div class="app-block">
+        <p class="label">The app — the root</p>
+        <h3>Cuyamaca Major / Pathway Generator</h3>
+        <p>A career-interest assessment that routes students to real programs, with edge-case logic for undecided and transfer students — AB928 / ADT alignment built in.</p>
+        <a class="btn" href="https://www.playlab.ai/project/cm2widnrq1i7nttodnraq3m2z" target="_blank" rel="noopener">Open in Playlab →</a>
+        <p class="meta">playlab.ai/project/cm2widnrq1i7nttodnraq3m2z</p>
+        <p class="companion">Companion: <a href="https://www.playlab.ai/project/cm2l7qkjp1ne3ezupi2xmxnfp" target="_blank" rel="noopener">No Prob(ation)! Bot</a> — multilingual, any hour.</p>
+      </div>
+      <div class="applyit">
+        <p class="label">Try it — adapt the root</p>
+        <p class="lead-txt">This app already <em>is</em> a remix. The structure stays; the catalog and questions get retuned. <b>Pick a context.</b></p>
+        <div class="chips" role="group" aria-label="Choose a context">
+          <button class="chip" aria-pressed="true" data-ctx="m1">Cuyamaca · origin</button>
+          <button class="chip" aria-pressed="false" data-ctx="m2">A CTE-strong college</button>
+          <button class="chip" aria-pressed="false" data-ctx="m3">A transfer-heavy college</button>
+          <button class="chip" aria-pressed="false" data-ctx="m4">Your college →</button>
+        </div>
+        <div class="applyit-grid">
+          <div class="stays"><p class="col-label">What stays — the root</p><ul><li>The career-interest assessment</li><li>Catalog-mapping logic</li><li>Undecided &amp; transfer routing</li><li>AB928 / ADT alignment</li></ul></div>
+          <div class="swaps"><p class="col-label">Swap for this context</p>
+            <div class="swap-panel is-active" data-ctx="m1"><div class="swap-line"><div class="what">Program catalog</div><div class="to">Cuyamaca majors &amp; certificates</div></div><div class="swap-line"><div class="what">Questions</div><div class="to">Tuned with Cuyamaca's counselor</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Local ADT + University Studies</div></div></div>
+            <div class="swap-panel" data-ctx="m2"><div class="swap-line"><div class="what">Program catalog</div><div class="to">Certificates &amp; stackable credentials</div></div><div class="swap-line"><div class="what">Questions</div><div class="to">CTE &amp; industry-interest</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Noncredit-to-credit pathways</div></div></div>
+            <div class="swap-panel" data-ctx="m3"><div class="swap-line"><div class="what">Program catalog</div><div class="to">ADTs &amp; transfer majors</div></div><div class="swap-line"><div class="what">Questions</div><div class="to">Transfer-goal &amp; university fit</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">UC / CSU transfer pathways</div></div></div>
+            <div class="swap-panel" data-ctx="m4"><div class="swap-line"><div class="what">Program catalog</div><div class="to">Your college's catalog</div></div><div class="swap-line"><div class="what">Questions</div><div class="to">Tuned with your counselor</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Your transfer &amp; GE routes</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lineage">
+        <p class="label">Lineage → collection</p>
+        <div class="nodes">
+          <div class="lnode root"><div class="stage">Root</div><div class="who">Cleve Barton · SMC</div><div class="what">Career &amp; Major Generator</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Remix</div><div class="who">My-Linh · Cuyamaca</div><div class="what">Retuned to Cuyamaca</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Next</div><div class="who">Your college</div><div class="what">The next remix</div></div>
+        </div>
+        <p class="cap">A real lineage, not a hypothetical: one educator's app at Santa Monica became another's at Cuyamaca.</p>
+      </div>
+    </div>
+  </div></article>
+
+  <!-- ===== 03 KHRYSTYN ===== -->
+  <article class="chapter" id="khrystyn"><div class="wrap">
+    <p class="kicker">Story 03 · Cuyamaca College · San Diego &amp; Imperial</p>
+    <div class="chapter-top">
+      <div class="lead">
+        <h2>Khrystyn Pamintuan</h2>
+        <p class="role">General, International &amp; Embedded Counselor — Behavioral &amp; Social Sciences</p>
+        <p class="deck">Down the hall from My-Linh, the same impossible math — and a different answer.</p>
+      </div>
+      <figure class="portrait"><img src="assets/khrystyn-pamintuan.jpg" alt="Khrystyn Pamintuan" onerror="this.style.visibility='hidden'"><figcaption>Khrystyn Pamintuan · Cuyamaca College</figcaption></figure>
+    </div>
+    <div class="reading">
+      <div class="body">
+        <blockquote class="pull">"What kind of personality and values do I want this tool to embody?"<cite>Khrystyn's first design question</cite></blockquote>
+        <p>With her department chair, Khrystyn built <span class="em">Ask CeCe</span> — a conversational counseling assistant that replaced a static FAQ dropdown and answers students 24/7. CeCe is built with a boundary: she knows she isn't a counselor, and hands students to a human when it matters. That honesty is what won the department's trust.</p>
+        <p>Now Khrystyn is building population-specific assistants — for international students, and for Social Work and Wellness Coach students — an ecosystem that protects her time for the conversations only a counselor can have.</p>
+      </div>
+      <div class="app-block">
+        <p class="label">The app — the root</p>
+        <h3>Ask CeCe</h3>
+        <p>A 24/7 counseling-FAQ assistant on the counseling webpage, built from a strengths-based, equity-minded lens — and honest about its limits, referring students to a human counselor when needed.</p>
+        <span class="btn ghost">Lives on Cuyamaca's counseling page</span>
+        <p class="companion">Growing into a suite: program-specific &amp; international-student assistants.</p>
+      </div>
+      <div class="applyit">
+        <p class="label">Try it — adapt the root</p>
+        <p class="lead-txt">The conversational FAQ and the ethical boundary stay; the knowledge base and referrals get localized. <b>Pick a context.</b></p>
+        <div class="chips" role="group" aria-label="Choose a context">
+          <button class="chip" aria-pressed="true" data-ctx="k1">Cuyamaca · origin</button>
+          <button class="chip" aria-pressed="false" data-ctx="k2">International students</button>
+          <button class="chip" aria-pressed="false" data-ctx="k3">A program pathway</button>
+          <button class="chip" aria-pressed="false" data-ctx="k4">Your college →</button>
+        </div>
+        <div class="applyit-grid">
+          <div class="stays"><p class="col-label">What stays — the root</p><ul><li>Conversational FAQ, not a dropdown</li><li>24/7 real-time answers</li><li>"I'm not a counselor" boundary</li><li>A named point-person to maintain it</li></ul></div>
+          <div class="swaps"><p class="col-label">Swap for this context</p>
+            <div class="swap-panel is-active" data-ctx="k1"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Cuyamaca counseling FAQs</div></div><div class="swap-line"><div class="what">Policies</div><div class="to">Grossmont–Cuyamaca rules</div></div><div class="swap-line"><div class="what">Referral</div><div class="to">To Cuyamaca counselors</div></div></div>
+            <div class="swap-panel" data-ctx="k2"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Visa / SEVIS / I-20 FAQs</div></div><div class="swap-line"><div class="what">Policies</div><div class="to">International advising rules</div></div><div class="swap-line"><div class="what">Referral</div><div class="to">To the DSO / intl counselor</div></div></div>
+            <div class="swap-panel" data-ctx="k3"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Program milestones &amp; courses</div></div><div class="swap-line"><div class="what">Policies</div><div class="to">Pathway-specific resources</div></div><div class="swap-line"><div class="what">Referral</div><div class="to">To the embedded counselor</div></div></div>
+            <div class="swap-panel" data-ctx="k4"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Your counseling FAQs</div></div><div class="swap-line"><div class="what">Policies</div><div class="to">Your district's rules</div></div><div class="swap-line"><div class="what">Referral</div><div class="to">Your human-referral rules</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lineage">
+        <p class="label">Lineage → collection</p>
+        <div class="nodes">
+          <div class="lnode root"><div class="stage">Root</div><div class="who">Ask CeCe</div><div class="what">General counseling FAQ</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Suite</div><div class="who">Program assistants</div><div class="what">Intl, Social Work, Wellness</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode root"><div class="stage">Collection</div><div class="who">Cuyamaca counseling</div><div class="what">With My-Linh's tools</div></div>
+        </div>
+        <p class="cap">Two counselors, one college: My-Linh's pathway tools and Khrystyn's CeCe are becoming a shared counseling collection other colleges can adopt.</p>
+      </div>
+    </div>
+  </div></article>
+
+  <!-- ===== 04 SALLY ===== -->
+  <article class="chapter" id="sally"><div class="wrap">
+    <p class="kicker">Story 04 · Foothill College · Bay Area</p>
+    <div class="chapter-top flip">
+      <div class="lead">
+        <h2>Sally Baldwin</h2>
+        <p class="role">Health Instructor &amp; Faculty Support Champion</p>
+        <p class="deck">Faculty were losing hours to accessibility, AI-policy, and accreditation questions. She saw a pattern.</p>
+      </div>
+      <figure class="portrait"><img src="assets/sally-baldwin.png" alt="Sally Baldwin" onerror="this.style.visibility='hidden'"><figcaption>Sally Baldwin · Foothill College</figcaption></figure>
+    </div>
+    <div class="reading">
+      <div class="body">
+        <blockquote class="pull">"People often don't need more information. They need help turning information into decisions."<cite>Sally's design philosophy</cite></blockquote>
+        <p>Sally's answer wasn't an app — it was a <span class="em">responsible-AI ecosystem</span>: a policy generator, a use labeler, and a student disclosure tool, built to work together and embedded in Foothill's AI Hub and faculty handbook.</p>
+        <p>Build the workflow before the technology, she says. Put the tools where people already work, and they get discovered, used, and maintained.</p>
+      </div>
+      <div class="app-block">
+        <p class="label">The app — the root</p>
+        <h3>Responsible-AI Ecosystem</h3>
+        <p>Three interlocking tools — AI Policy Generator, AI Use Labeler, and My AI Process &amp; Disclosure — designed as one workflow, not three separate bots.</p>
+        <span class="btn ghost">Lives in Foothill's AI Hub</span>
+        <p class="companion">Affordability siblings: ZTC Program Finder &amp; Zero-Cost Degree Bot.</p>
+      </div>
+      <div class="applyit">
+        <p class="label">Try it — adapt the root</p>
+        <p class="lead-txt">The three tools stay linked; the policy language and embed points get localized. <b>Pick a context.</b></p>
+        <div class="chips" role="group" aria-label="Choose a context">
+          <button class="chip" aria-pressed="true" data-ctx="s1">Foothill · origin</button>
+          <button class="chip" aria-pressed="false" data-ctx="s2">A single course</button>
+          <button class="chip" aria-pressed="false" data-ctx="s3">A whole department</button>
+          <button class="chip" aria-pressed="false" data-ctx="s4">Your college →</button>
+        </div>
+        <div class="applyit-grid">
+          <div class="stays"><p class="col-label">What stays — the root</p><ul><li>Three tools that work together</li><li>Policy → labeling → disclosure</li><li>Plain-language framing</li><li>Embedded in existing systems</li></ul></div>
+          <div class="swaps"><p class="col-label">Swap for this context</p>
+            <div class="swap-panel is-active" data-ctx="s1"><div class="swap-line"><div class="what">Policy language</div><div class="to">Foothill's AI-policy norms</div></div><div class="swap-line"><div class="what">Labels</div><div class="to">Foothill's shared use labels</div></div><div class="swap-line"><div class="what">Embed points</div><div class="to">AI Hub + Faculty Handbook</div></div></div>
+            <div class="swap-panel" data-ctx="s2"><div class="swap-line"><div class="what">Policy language</div><div class="to">One course's AI policy</div></div><div class="swap-line"><div class="what">Labels</div><div class="to">Assignment-level labels</div></div><div class="swap-line"><div class="what">Embed points</div><div class="to">Syllabus + LMS module</div></div></div>
+            <div class="swap-panel" data-ctx="s3"><div class="swap-line"><div class="what">Policy language</div><div class="to">Shared department policy</div></div><div class="swap-line"><div class="what">Labels</div><div class="to">Common labels across sections</div></div><div class="swap-line"><div class="what">Embed points</div><div class="to">The program handbook</div></div></div>
+            <div class="swap-panel" data-ctx="s4"><div class="swap-line"><div class="what">Policy language</div><div class="to">Your campus AI policy</div></div><div class="swap-line"><div class="what">Labels</div><div class="to">Your campus use labels</div></div><div class="swap-line"><div class="what">Embed points</div><div class="to">Your hub, handbook &amp; LMS</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lineage">
+        <p class="label">Lineage → collection</p>
+        <div class="nodes">
+          <div class="lnode root"><div class="stage">Root</div><div class="who">Sally · Foothill</div><div class="what">3-tool responsible-AI set</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Adapt</div><div class="who">Per course / dept</div><div class="what">Localized policy &amp; labels</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode root"><div class="stage">Collection</div><div class="who">Campus AI Hub</div><div class="what">A maintained toolkit</div></div>
+        </div>
+        <p class="cap">The clearest preview of Playlab V2 collections: not a lone app, but a set of tools that belong together.</p>
+      </div>
+    </div>
+  </div></article>
+
+  <!-- ===== 05 JACOB ===== -->
+  <article class="chapter" id="jacob"><div class="wrap">
+    <p class="kicker">Story 05 · Hartnell College · South Central Coast</p>
+    <div class="chapter-top">
+      <div class="lead">
+        <h2>Jacob Jun</h2>
+        <p class="role">Project Facilitator (ITR) &amp; Technologist</p>
+        <p class="deck">Students show up at the IT desk with questions that were never about IT.</p>
+      </div>
+      <figure class="portrait"><img src="assets/jacob-jun.jpg" alt="Jacob Jun" onerror="this.style.visibility='hidden'"><figcaption>Jacob Jun · Hartnell College</figcaption></figure>
+    </div>
+    <div class="reading">
+      <div class="body">
+        <blockquote class="pull">"When students hit a dead end, they don't just lose time. They lose momentum."<cite>Jacob, on why navigation is an equity issue</cite></blockquote>
+        <p>Jacob built <span class="em">OscarBot</span>, a student-facing assistant that answers technical questions and — just as important — points students to the right place when the answer lives somewhere else on campus. It reads from Hartnell's website and casts wider for technical questions.</p>
+        <p>It won't always have the exact answer. But for first-generation students facing a complex institution, a starting point beats a dead end. Know your resources, Jacob says, and design from the student's perspective.</p>
+      </div>
+      <div class="app-block">
+        <p class="label">The app — the root</p>
+        <h3>OscarBot</h3>
+        <p>A student-facing front door that answers tech questions and routes everything else to the right campus resource — meeting students who don't yet know where to start.</p>
+        <a class="btn" href="https://www.playlab.ai/project/cmqos4b6y00lljw0w32ajnhic" target="_blank" rel="noopener">Open in Playlab →</a>
+        <p class="meta">playlab.ai/project/cmqos4b6y00lljw0w32ajnhic</p>
+      </div>
+      <div class="applyit">
+        <p class="label">Try it — adapt the root</p>
+        <p class="lead-txt">The "meet students where they are" front door stays; the knowledge base and routing get localized. <b>Pick a context.</b></p>
+        <div class="chips" role="group" aria-label="Choose a context">
+          <button class="chip" aria-pressed="true" data-ctx="j1">Hartnell · origin</button>
+          <button class="chip" aria-pressed="false" data-ctx="j2">A financial-aid office</button>
+          <button class="chip" aria-pressed="false" data-ctx="j3">Admissions &amp; records</button>
+          <button class="chip" aria-pressed="false" data-ctx="j4">Your college →</button>
+        </div>
+        <div class="applyit-grid">
+          <div class="stays"><p class="col-label">What stays — the root</p><ul><li>Meets "I don't know where to start"</li><li>Answers tech, routes the rest</li><li>Grounded in the college website</li><li>Designed from the student's view</li></ul></div>
+          <div class="swaps"><p class="col-label">Swap for this context</p>
+            <div class="swap-panel is-active" data-ctx="j1"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Hartnell website</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Hartnell department directory</div></div><div class="swap-line"><div class="what">Scope</div><div class="to">IT + general student questions</div></div></div>
+            <div class="swap-panel" data-ctx="j2"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Financial-aid FAQs &amp; deadlines</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Forms &amp; document portal</div></div><div class="swap-line"><div class="what">Scope</div><div class="to">Escalate to FinAid staff</div></div></div>
+            <div class="swap-panel" data-ctx="j3"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Registration &amp; records FAQs</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Enrollment steps &amp; dates</div></div><div class="swap-line"><div class="what">Scope</div><div class="to">Escalate to A&amp;R</div></div></div>
+            <div class="swap-panel" data-ctx="j4"><div class="swap-line"><div class="what">Knowledge base</div><div class="to">Your website</div></div><div class="swap-line"><div class="what">Routing</div><div class="to">Your department directory</div></div><div class="swap-line"><div class="what">Scope</div><div class="to">Your routing rules</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="lineage">
+        <p class="label">Lineage → collection</p>
+        <div class="nodes">
+          <div class="lnode root"><div class="stage">Root</div><div class="who">Jacob · Hartnell</div><div class="what">OscarBot front door</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Remix</div><div class="who">Any office</div><div class="what">FinAid, A&amp;R, advising</div></div>
+          <div class="lconn">→</div>
+          <div class="lnode"><div class="stage">Collection</div><div class="who">Student navigation</div><div class="what">A CCC "way-finding" set</div></div>
+        </div>
+        <p class="cap">A front door that turns "I don't know where to start" into a first step — for the students who need it most.</p>
+      </div>
+    </div>
+  </div></article>
+
+  <!-- ===== CLOSING ===== -->
+  <section class="closing"><div class="wrap reading">
+    <p class="kicker">The bigger picture</p>
+    <h2>Five people. Five colleges. One system learning to change itself.</h2>
+    <p>None of these started as software projects. They started with a teacher, a counselor, a technologist noticing something break — and deciding to fix it. Each built a <span style="font-weight:600">root</span> that others can adapt. At Cuyamaca, two counselors have already turned individual tools into a shared collection. That's the pattern, in miniature.</p>
+    <blockquote class="pull big">People → stories → apps → lineages → collections. Multiply by 661 educators and 1,900+ apps across 116 colleges, and the library stops being a library. It becomes how the system changes itself — from the inside.</blockquote>
+    <p>That's the real artifact the AI Solutions Studio is built to hold: not an inventory of apps, but a record of distributed changemaking — and a map others can follow.</p>
+  </div></section>
+
+</main>
+
+<footer><div class="wrap">
+  <p class="note">Concept prototype for the California Community Colleges × Playlab Super-Trainer cohort. Built from the builders' own story bios; app buttons link to live Playlab projects. Not a live product — a working sketch of how the AI Solutions Studio could read an app as a story.</p>
+  <span class="wordmark">Playlab</span>
+</div></footer>
+
+<script>
+  // apply-across-contexts chips (scoped per chapter)
+  document.querySelectorAll('.applyit').forEach(function(box){
+    var chips = box.querySelectorAll('.chip'), panels = box.querySelectorAll('.swap-panel');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var ctx = chip.getAttribute('data-ctx');
+        chips.forEach(function(c){ c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-ctx') === ctx); });
+      });
+    });
+  });
+  // scroll-spy for the contents nav
+  var links = Array.prototype.slice.call(document.querySelectorAll('.contents a'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){ l.removeAttribute('aria-current'); });
+          if(map[e.target.id]) map[e.target.id].setAttribute('aria-current','true');
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    document.querySelectorAll('.chapter').forEach(function(c){ obs.observe(c); });
+  }
+</script>
+</body>
+</html>
